@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  vat-calculator-api:
+    image: vat-calculator-api:1.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
