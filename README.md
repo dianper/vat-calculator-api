@@ -40,8 +40,8 @@ To run the application locally, follow these steps:
 ```bash
 dotnet run --project src/Presentation.API/Presentation.API.csproj
 ```
-2. Access Swagger UI: Open your browser and go to http://localhost:80/swagger/index.html. This page provides a UI to interact with the API and view its documentation.
-3. API Versioning: The API supports versioning in the URL. Example: http://localhost:80/api/v1/vat/calculate
+2. Access Swagger UI: Open your browser and go to http://localhost:5000/swagger/index.html. This page provides a UI to interact with the API and view its documentation.
+3. API Versioning: The API supports versioning in the URL. Example: http://localhost:5000/api/v1/vat/calculate
 
 To run the application in a Docker container, follow these steps:
 ```bash
