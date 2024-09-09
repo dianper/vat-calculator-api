@@ -1,3 +1,5 @@
+![Build Status](https://github.com/dianper/vat-calculator-api/actions/workflows/pipeline.yml/badge.svg)
+
 # Austrian VAT Calculator API
 
 The Austrian VAT Calculator API is a RESTful service designed to calculate VAT (Value Added Tax) for Austrian purchases based on net, gross, or VAT amounts. The API supports multiple VAT rates commonly used in Austria (10%, 13%, and 20%) and follows best practices such as API versioning, testing, and dependency injection.
@@ -9,7 +11,7 @@ The Austrian VAT Calculator API is a RESTful service designed to calculate VAT (
 - **Docker Support**: Dockerfile included for containerization and deployment in any environment.
 - **Unit and Integration Tests**: Comprehensive test coverage to ensure the reliability of the application.
 - **FluentValidator**: Used for validating input requests, ensuring data integrity and preventing invalid operations.
-- **Central Package Manager**: Leverages .NET’s Central Package Management to streamline NuGet dependency management.
+- **Central Package Manager**: Leverages .NETâ€™s Central Package Management to streamline NuGet dependency management.
 - **GitHub Actions**: Automated CI pipeline for building and testing the application.
 
 ## Installation
