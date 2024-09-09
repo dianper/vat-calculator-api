@@ -4,13 +4,13 @@ The Austrian VAT Calculator API is a RESTful service designed to calculate VAT (
 
 ## Key Features
 - **.NET 8**: Built with the latest .NET 8 framework.
-- **Central Package Manager**: Leverages .NET’s Central Package Management to streamline NuGet dependency management.
-- **Unit and Integration Tests**: Comprehensive test coverage to ensure the reliability of the application.
-- **FluentValidator**: Used for validating input requests, ensuring data integrity and preventing invalid operations.
 - **API Versioning**: Future-proof API structure with URL-based or header-based versioning to support multiple versions.
 - **Swagger Documentation**: Integrated Swagger UI for API exploration and testing directly in your browser.
-- **GitHub Actions**: Automated CI/CD pipeline for building, testing, and deploying the application.
 - **Docker Support**: Dockerfile included for containerization and deployment in any environment.
+- **Unit and Integration Tests**: Comprehensive test coverage to ensure the reliability of the application.
+- **FluentValidator**: Used for validating input requests, ensuring data integrity and preventing invalid operations.
+- **Central Package Manager**: Leverages .NET’s Central Package Management to streamline NuGet dependency management.
+- **GitHub Actions**: Automated CI pipeline for building and testing the application.
 
 ## Installation
 
