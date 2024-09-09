@@ -1,13 +1,15 @@
 ﻿namespace Application.Services.Validators
 {
     using Application.Services.Requests;
+    using CrossCutting.Configuration;
     using FluentValidation;
+    using Microsoft.Extensions.Options;
     using System.Diagnostics.CodeAnalysis;
 
     [ExcludeFromCodeCoverage]
     public sealed class VATRequestValidator : AbstractValidator<VATRequest>
     {
-        public VATRequestValidator()
+        public VATRequestValidator(IOptions<VATConfiguration> vatConfiguration)
         {
             // At least one amount must be provided
             RuleFor(x => x)
@@ -40,7 +42,7 @@
 
             // VAT rate must be one of the valid rates
             RuleFor(x => x.VatRate)
-                .Must(rate => rate == 0.10 || rate == 0.13 || rate == 0.20)
+                .Must(rate => vatConfiguration.Value.Rates.Any(x => x.Rate == rate))
                 .WithMessage("Invalid VAT rate. It must be 10%, 13%, or 20%.");
         }
     }

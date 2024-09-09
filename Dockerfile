@@ -13,6 +13,7 @@ COPY Packages.props ./
 # Copy all project files for the services and tests
 COPY src/Application.Services/Application.Services.csproj ./src/Application.Services/
 COPY src/Presentation.API/Presentation.API.csproj ./src/Presentation.API/
+COPY src/CrossCutting.Configuration/CrossCutting.Configuration.csproj ./src/CrossCutting.Configuration/
 COPY tests/Application.Services.UnitTests/Application.Services.UnitTests.csproj ./tests/Application.Services.UnitTests/
 COPY tests/Presentation.API.IntegrationTests/Presentation.API.IntegrationTests.csproj ./tests/Presentation.API.IntegrationTests/
 COPY tests/Presentation.API.UnitTests/Presentation.API.UnitTests.csproj ./tests/Presentation.API.UnitTests/

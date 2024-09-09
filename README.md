@@ -2,6 +2,14 @@
 
 The Austrian VAT Calculator API is a RESTful service designed to calculate VAT (Value Added Tax) for Austrian purchases based on net, gross, or VAT amounts. The API supports multiple VAT rates commonly used in Austria (10%, 13%, and 20%) and follows best practices such as API versioning, testing, and dependency injection.
 
+## Summary of Austrian VAT Rates
+
+| **VAT Rate** | **Goods/Services**      | **Examples**                                                |
+|--------------|-------------------------|-------------------------------------------------------------|
+| **20%**      | Standard rate            | Most goods and services (consumer products, cars, legal services) |
+| **13%**      | Reduced rate             | Tourism-related services, cultural activities, agricultural goods |
+| **10%**      | Reduced rate             | Essential goods (food, medicine, public transport, books, rent)  |
+
 ## Key Features
 - **.NET 8**: Built with the latest .NET 8 framework.
 - **API Versioning**: Future-proof API structure with URL-based or header-based versioning to support multiple versions.

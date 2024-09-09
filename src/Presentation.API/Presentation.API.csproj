@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.Services\Application.Services.csproj" />
+    <ProjectReference Include="..\CrossCutting.Configuration\CrossCutting.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

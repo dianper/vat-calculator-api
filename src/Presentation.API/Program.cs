@@ -1,6 +1,7 @@
 namespace Presentation.API
 {
     using Application.Services.Extensions;
+    using CrossCutting.Configuration.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Presentation.API.Extensions;
     using Presentation.API.Middlewares;
@@ -14,6 +15,7 @@ namespace Presentation.API
             builder.WebHost.UseUrls("http://0.0.0.0:5000");
 
             // Add services to the container
+            builder.Services.AddConfigurations(builder.Configuration);
             builder.Services.AddValidators();
             builder.Services.AddServices();
 
