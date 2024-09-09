@@ -10,7 +10,7 @@
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     public sealed class VATController(
-        IVATCalculator calculator,
+        ICalculatorFactory factory,
         IValidator<VATRequest> validator,
         ILogger<VATController> logger) : ControllerBase
     {
@@ -31,8 +31,9 @@
 
             try
             {
-                var calculationResult = calculator.Calculate(request);
-                return Ok(calculationResult);
+                var calculator = factory.CreateCalculator(request);
+                var result = calculator.Calculate(request);
+                return Ok(result);
             }
             catch (Exception ex)
             {

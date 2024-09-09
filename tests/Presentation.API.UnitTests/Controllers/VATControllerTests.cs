@@ -1,5 +1,7 @@
 ﻿namespace Presentation.API.UnitTests.Controllers
 {
+    using Application.Services;
+    using Application.Services.Exceptions;
     using Application.Services.Interfaces;
     using Application.Services.Requests;
     using Application.Services.Responses;
@@ -14,18 +16,18 @@
     [Trait("Category", "Presentation.API.Controllers.VATController.UnitTests")]
     public sealed class VATControllerTests
     {
-        private readonly Mock<IVATCalculator> calculator;
+        private readonly Mock<ICalculatorFactory> calculatorFactory;
         private readonly Mock<IValidator<VATRequest>> validator;
         private readonly Mock<ILogger<VATController>> logger;
         private readonly VATController controller;
 
         public VATControllerTests()
         {
-            this.calculator = new Mock<IVATCalculator>();
+            this.calculatorFactory = new Mock<ICalculatorFactory>();
             this.validator = new Mock<IValidator<VATRequest>>();
             this.logger = new Mock<ILogger<VATController>>();
             this.controller = new VATController(
-                this.calculator.Object,
+                this.calculatorFactory.Object,
                 this.validator.Object,
                 this.logger.Object);
         }
@@ -40,9 +42,9 @@
                 VatRate = 0.23
             };
 
-            this.calculator
-                .Setup(c => c.Calculate(It.IsAny<VATRequest>()))
-                .Returns(new VATResponse(100, 123, 23));
+            this.calculatorFactory
+                .Setup(v => v.CreateCalculator(request))
+                .Returns(new NetCalculator());
 
             this.validator
                 .Setup(v => v.Validate(It.IsAny<VATRequest>()))
@@ -69,9 +71,9 @@
                 VatRate = 0.23
             };
 
-            this.calculator
-                .Setup(c => c.Calculate(It.IsAny<VATRequest>()))
-                .Returns(new VATResponse("Net is required"));
+            this.calculatorFactory
+                .Setup(v => v.CreateCalculator(request))
+                .Returns(new NetCalculator());
 
             this.validator
                 .Setup(v => v.Validate(It.IsAny<VATRequest>()))
@@ -100,9 +102,9 @@
                 VatRate = 0.23
             };
 
-            this.calculator
-                .Setup(c => c.Calculate(It.IsAny<VATRequest>()))
-                .Throws(new Exception("An error occurred."));
+            this.calculatorFactory
+                .Setup(v => v.CreateCalculator(request))
+                .Throws(new InvalidCalculatorException("error"));
 
             this.validator
                 .Setup(v => v.Validate(It.IsAny<VATRequest>()))

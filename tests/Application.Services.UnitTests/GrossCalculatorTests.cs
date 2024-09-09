@@ -3,20 +3,20 @@
     using Application.Services.Requests;
     using Xunit;
 
-    [Trait("Category", "Application.Services.VATCalculator.UnitTests")]
-    public sealed class VATCalculatorTests
+    [Trait("Category", "Application.Services.GrossCalculator.UnitTests")]
+    public class GrossCalculatorTests
     {
         [Fact]
-        public void Calculate_WhenVatIsProvided_ShouldReturnCorrectValues()
+        public void Calculate_WhenGrossIsProvided_ShouldReturnCorrectValues()
         {
             // Arrange
             var request = new VATRequest
             {
-                Vat = 23,
+                Gross = 123,
                 VatRate = 0.23
             };
 
-            var calculator = new VATCalculator();
+            var calculator = new GrossCalculator();
 
             // Act
             var response = calculator.Calculate(request);
@@ -33,7 +33,7 @@
             // Arrange
             var request = new VATRequest();
 
-            var calculator = new VATCalculator();
+            var calculator = new GrossCalculator();
 
             // Act
             void action() => calculator.Calculate(request);

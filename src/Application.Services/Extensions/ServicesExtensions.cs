@@ -12,6 +12,9 @@
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddSingleton<ICalculatorFactory, CalculatorFactory>();
+            services.AddScoped<IVATCalculator, NetCalculator>();
+            services.AddScoped<IVATCalculator, GrossCalculator>();
             services.AddScoped<IVATCalculator, VATCalculator>();
 
             return services;

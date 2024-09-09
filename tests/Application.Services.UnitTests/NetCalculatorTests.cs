@@ -1,22 +1,23 @@
 ﻿namespace Application.Services.UnitTests
 {
     using Application.Services.Requests;
+    using System;
     using Xunit;
 
-    [Trait("Category", "Application.Services.VATCalculator.UnitTests")]
-    public sealed class VATCalculatorTests
+    [Trait("Category", "Application.Services.NetCalculator.UnitTests")]
+    public sealed class NetCalculatorTests
     {
         [Fact]
-        public void Calculate_WhenVatIsProvided_ShouldReturnCorrectValues()
+        public void Calculate_WhenNetIsProvided_ShouldReturnCorrectValues()
         {
             // Arrange
             var request = new VATRequest
             {
-                Vat = 23,
+                Net = 100,
                 VatRate = 0.23
             };
 
-            var calculator = new VATCalculator();
+            var calculator = new NetCalculator();
 
             // Act
             var response = calculator.Calculate(request);
@@ -33,7 +34,7 @@
             // Arrange
             var request = new VATRequest();
 
-            var calculator = new VATCalculator();
+            var calculator = new NetCalculator();
 
             // Act
             void action() => calculator.Calculate(request);
