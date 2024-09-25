@@ -6,24 +6,29 @@
 
     public sealed class CalculatorFactory : ICalculatorFactory
     {
+        private readonly Dictionary<Func<VATRequest, bool>, Func<IVATCalculator>> calculatorMap;
+
+        public CalculatorFactory()
+        {
+            this.calculatorMap = new Dictionary<Func<VATRequest, bool>, Func<IVATCalculator>>
+            {
+                { r => r.Net.HasValue, () => new NetCalculator() },
+                { r => r.Gross.HasValue, () => new GrossCalculator() },
+                { r => r.Vat.HasValue, () => new VATCalculator() }
+            };
+        }
+
         public IVATCalculator CreateCalculator(VATRequest request)
         {
-            if (request.Net.HasValue)
+            foreach (var pair in this.calculatorMap)
             {
-                return new NetCalculator();
+                if (pair.Key(request))
+                {
+                    return pair.Value();
+                }
             }
-            else if (request.Gross.HasValue)
-            {
-                return new GrossCalculator();
-            }
-            else if (request.Vat.HasValue)
-            {
-                return new VATCalculator();
-            }
-            else
-            {
-                throw new InvalidCalculatorException("Invalid calculator request.");
-            }
+
+            throw new InvalidCalculatorException("Invalid calculator request.");
         }
     }
 }

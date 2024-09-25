@@ -14,7 +14,7 @@
             var request = new VATRequest
             {
                 Net = 100,
-                VatRate = 0.23
+                VatRate = 0.23m
             };
 
             var factory = new CalculatorFactory();
@@ -33,7 +33,7 @@
             var request = new VATRequest
             {
                 Gross = 123,
-                VatRate = 0.23
+                VatRate = 0.23m
             };
 
             var factory = new CalculatorFactory();
@@ -52,7 +52,7 @@
             var request = new VATRequest
             {
                 Vat = 23,
-                VatRate = 0.23
+                VatRate = 0.23m
             };
 
             var factory = new CalculatorFactory();

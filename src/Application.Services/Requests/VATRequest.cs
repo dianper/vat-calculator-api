@@ -5,15 +5,15 @@
     public sealed class VATRequest
     {
         [JsonPropertyName("net")]
-        public double? Net { get; set; }
+        public decimal? Net { get; set; }
 
         [JsonPropertyName("vat")]
-        public double? Vat { get; set; }
+        public decimal? Vat { get; set; }
 
         [JsonPropertyName("gross")]
-        public double? Gross { get; set; }        
+        public decimal? Gross { get; set; }        
 
         [JsonPropertyName("vatRate")]
-        public double VatRate { get; set; }
+        public decimal VatRate { get; set; }
     }
 }

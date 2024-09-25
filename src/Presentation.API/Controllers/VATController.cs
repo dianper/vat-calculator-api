@@ -7,16 +7,13 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/vat")]
     [ApiVersion("1.0")]
     public sealed class VATController(
         ICalculatorFactory factory,
-        IValidator<VATRequest> validator,
-        ILogger<VATController> logger) : ControllerBase
+        IValidator<VATRequest> validator) : ControllerBase
     {
-        private const string UnexpectedErrorMessage = "An unexpected error occurred.";
-
-        [HttpPost("calculate")]
+        [HttpPost]
         [ProducesResponseType<VATResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType<VATResponse>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<VATResponse>(StatusCodes.Status500InternalServerError)]
@@ -29,17 +26,9 @@
                 return BadRequest(new VATResponse(errors));
             }
 
-            try
-            {
-                var calculator = factory.CreateCalculator(request);
-                var result = calculator.Calculate(request);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, UnexpectedErrorMessage);
-                return StatusCode(500, new VATResponse(UnexpectedErrorMessage));
-            }
+            var calculator = factory.CreateCalculator(request);
+            var result = calculator.Calculate(request);
+            return Ok(result);
         }
     }
 }

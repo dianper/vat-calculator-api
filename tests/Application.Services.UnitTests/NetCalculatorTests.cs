@@ -14,7 +14,7 @@
             var request = new VATRequest
             {
                 Net = 100,
-                VatRate = 0.23
+                VatRate = 0.23m
             };
 
             var calculator = new NetCalculator();

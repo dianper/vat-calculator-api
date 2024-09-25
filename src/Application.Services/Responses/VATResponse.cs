@@ -5,13 +5,13 @@
     public sealed class VATResponse
     {
         [JsonPropertyName("net")]
-        public double Net { get; set; }
+        public decimal Net { get; set; }
 
         [JsonPropertyName("vat")]
-        public double Vat { get; set; }
+        public decimal Vat { get; set; }
 
         [JsonPropertyName("gross")]
-        public double Gross { get; set; }        
+        public decimal Gross { get; set; }        
 
         [JsonPropertyName("isValid")]
         public bool IsValid { get; set; }
@@ -19,7 +19,7 @@
         [JsonPropertyName("message")]
         public string Message { get; set; }
 
-        public VATResponse(double net, double gross, double vat)
+        public VATResponse(decimal net, decimal gross, decimal vat)
         {
             Net = net;
             Vat = vat;

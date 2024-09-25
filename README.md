@@ -64,7 +64,7 @@ docker-compose up --build
 ### VAT Calculation
 The API provides endpoints to calculate VAT based on either the net amount, gross amount, or VAT amount.
 
-- **POST** /api/v1/vat/calculate
+- **POST** /api/v1/vat
 - **Request Body**: `VATRequest`
 ```json
 {

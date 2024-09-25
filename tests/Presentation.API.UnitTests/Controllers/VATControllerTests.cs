@@ -28,8 +28,7 @@
             this.logger = new Mock<ILogger<VATController>>();
             this.controller = new VATController(
                 this.calculatorFactory.Object,
-                this.validator.Object,
-                this.logger.Object);
+                this.validator.Object);
         }
 
         [Fact]
@@ -39,7 +38,7 @@
             var request = new VATRequest
             {
                 Net = 100,
-                VatRate = 0.23
+                VatRate = 0.23m
             };
 
             this.calculatorFactory
@@ -68,7 +67,7 @@
             // Arrange
             var request = new VATRequest
             {
-                VatRate = 0.23
+                VatRate = 0.23m
             };
 
             this.calculatorFactory
@@ -90,37 +89,6 @@
             var response = Assert.IsType<VATResponse>(badRequestResult.Value);
 
             Assert.Equal("Net is required.", response.Message);
-        }
-
-        [Fact]
-        public void CalculateVAT_WhenCalculatorThrowsException_ShouldReturnInternalServerError()
-        {
-            // Arrange
-            var request = new VATRequest
-            {
-                Net = 100,
-                VatRate = 0.23
-            };
-
-            this.calculatorFactory
-                .Setup(v => v.CreateCalculator(request))
-                .Throws(new InvalidCalculatorException("error"));
-
-            this.validator
-                .Setup(v => v.Validate(It.IsAny<VATRequest>()))
-                .Returns(new ValidationResult());
-
-            // Act
-            var result = this.controller.CalculateVAT(request);
-
-            // Assert
-            var internalServerErrorResult = Assert.IsType<ObjectResult>(result);
-            var response = Assert.IsType<VATResponse>(internalServerErrorResult.Value);
-
-            Assert.Equal(500, internalServerErrorResult.StatusCode);
-            Assert.Equal("An unexpected error occurred.", response.Message);
-
-            logger.VerifyAll();
         }
     }
 }

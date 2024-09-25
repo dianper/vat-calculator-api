@@ -23,7 +23,7 @@ namespace Presentation.API.IntegrationTests
             var client = this.factory.CreateClient();
 
             // Act
-            var response = await client.PostAsJsonAsync("api/v1.0/vat/calculate", new
+            var response = await client.PostAsJsonAsync("api/v1.0/vat", new
             {
                 net = 100,
                 vatRate = 0.20
@@ -49,7 +49,7 @@ namespace Presentation.API.IntegrationTests
             var client = this.factory.CreateClient();
 
             // Act
-            var response = await client.PostAsJsonAsync("api/v1.0/vat/calculate", new
+            var response = await client.PostAsJsonAsync("api/v1.0/vat", new
             {
                 net = 100,
                 vatRate = 0.21
@@ -71,7 +71,7 @@ namespace Presentation.API.IntegrationTests
             var client = this.factory.CreateClient();
 
             // Act
-            var response = await client.PostAsJsonAsync("api/v1.0/vat/calculate", new
+            var response = await client.PostAsJsonAsync("api/v1.0/vat", new
             {
                 net = 100,
                 vat = 20,
