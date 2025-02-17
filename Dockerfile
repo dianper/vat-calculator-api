@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-EXPOSE 80
+EXPOSE 5000
 
 # Copy the necessary files for the build
 COPY VATCalculator.sln ./
