@@ -7,11 +7,10 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -32,3 +31,26 @@ jobs:
 
     - name: Integration Tests
       run: dotnet test --filter IntegrationTests --no-build --verbosity normal
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Log in to GitHub Container Registry
+      run: echo "${{ secrets.GH_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build and tag Docker image
+      run: |
+        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/vat-calculator-api
+        docker build -t $IMAGE_NAME:latest -f Dockerfile .
+        docker tag $IMAGE_NAME:latest $IMAGE_NAME:${{ github.sha }}
+
+    - name: Push Docker image
+      run: |
+        IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/vat-calculator-api
+        docker push $IMAGE_NAME:latest
+        docker push $IMAGE_NAME:${{ github.sha }}
